@@ -3,9 +3,27 @@ from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 app = Flask(__name__)
-from openai import OpenAI
 import os
-openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+from dotenv import load_dotenv
+from openai import OpenAI
+
+# 1. Manually find the .env file path
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
+
+# 2. Grab the key
+api_key = os.getenv("OPENAI_API_KEY")
+
+# 3. CHECK: If the key is missing, stop and tell us why
+if not api_key:
+    print("❌ ERROR: API Key not found!")
+    print(f"Looked in: {os.path.join(basedir, '.env')}")
+    # Temporary fallback: Paste your key below if .env keeps failing
+    # api_key = "your-key-here" 
+else:
+    print("✅ API Key loaded successfully!")
+
+openai_client = OpenAI(api_key=api_key)
 
 mongo_client = MongoClient("mongodb://localhost:27017/")
 db = mongo_client["study_planner"]
