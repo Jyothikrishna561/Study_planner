@@ -1,0 +1,396 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background */
+body {
+    font-family: 'Comfortaa', cursive;
+    background: linear-gradient(135deg, #fdf6f0, #f7e6d5);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 🔥 move to top */
+
+    min-height: 100vh;
+    padding-top: 60px; /* space from top */
+}
+
+/* Main container */
+.container {
+    text-align: center;
+}
+
+/* Title with icon style */
+/*h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #3b3b98; 
+    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif;
+}*/
+h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #3b3b98;
+    margin-bottom: 55px; /* 👈 increase spacing */
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Form */
+.task-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    background: rgba(255, 255, 255, 0.4);
+    padding: 12px 15px;
+    border-radius: 30px;
+}
+
+/* Input */
+input[type="text"] {
+    width: 260px;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 25px;
+    border: none;
+    background: #f9f9ff;
+    outline: none;
+
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+
+    display: flex;
+    align-items: center;   /* real vertical center */
+}
+/* Button */
+button {
+    padding: 12px 18px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(135deg, #6C63FF, #A78BFA);
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Hover */
+button:hover {
+    
+    background: linear-gradient(135deg, #4C46C7, #6C63FF);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+/* Task list */
+.task-list {
+    list-style: none;
+    margin-top: 25px;
+    padding: 0;
+}
+
+/* Task card */
+.task-card {
+    background: #ffffff;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+
+    border-left: 4px solid #6c63ff;
+}
+
+/* Hover effect */
+.task-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Task text */
+.task-card span {
+    color: #2d3748;
+    transition: all 0.3s ease;
+}
+
+/* Delete button */
+.delete-btn {
+    text-decoration: none;
+    color: #ff6b6b;
+    font-size: 16px;
+}
+
+.delete-btn:hover {
+    color: #ff3b3b;
+}
+/* Completed task */
+.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+    color:#888
+}
+/* Left side (checkbox + text) */
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Small checkbox */
+.task-check {
+    width: 14px;
+    height: 14px;
+    accent-color: #6c63ff;
+    cursor: pointer;
+}
+/*&input::placeholder {
+    color: #000000; 
+}*/
+
+.stats {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #2d3748;
+}
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 12px;
+    background: #f3ecff;
+    color: #4c46c7;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+}
+.task-text.completed {
+    text-decoration: line-through;
+    color: #888;
+    opacity: 0.7;
+}
+.progress-container {
+    width: 280px;
+    height: 12px;
+    background: #e6e0ff;
+    border-radius: 20px;
+    margin: 15px auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(135deg, #6c63ff, #a78bfa);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+    line-height: 12px;
+    transition: width 0.4s ease;
+    min-width: 5%;
+}
+.message p {
+    font-size: 15px;
+}
+/* STEP 5: Task form layout */
+.task-form {
+    display: flex;
+    align-items: center;     /* align input + button in center */
+    justify-content: center; /* center horizontally */
+    gap: 12px;
+
+    background: rgba(255, 255, 255, 0.4);
+    padding: 12px 15px;
+    border-radius: 30px;
+}
+
+/* Input and button styles */
+
+button {
+    padding: 14px 24px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #6C63FF, #A78BFA);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(108, 99, 255, 0.3);
+}
+
+/* STEP 6: Floating label */
+.input-group {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center; /* vertical center for input */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 25px;
+    border: none;
+    background: rgba(255, 255, 255, 0.4); /* brighter */
+    font-size: 16px;
+    color: #333; /* text color */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Target the label specifically */
+/* 1. Center the label and set the dark grey color */
+.input-group label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Perfectly centers it */
+    
+    color: #4a5568; /* Solid dark grey */
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+    padding: 0 4px;
+    white-space: nowrap;
+}
+
+/* 2. Move label to the top-left when focusing or typing */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 40px; /* Moves it slightly in from the left */
+    transform: translate(0, 0); /* Reset the centering transform */
+    
+    font-size: 12px;
+    background: #fff; /* Matches your background to "cut" the line */
+    color: #333; /* Purple highlight when active */
+    padding: 0 6px;
+    border-radius: 12px;
+}
+.task-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.task-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.priority-select {
+    padding: 12px 14px;
+    border-radius: 20px;
+    border: none;
+    background: rgba(255,255,255,0.4);
+    color: #333;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.priority-select:hover {
+    background: rgba(255,255,255,0.6);
+}
+
+.task-item.high {
+    border-left: 5px solid #FF4B4B; /* red for high */
+}
+
+.task-item.medium {
+    border-left: 5px solid #FFD93D; /* yellow for medium */
+}
+
+.task-item.low {
+    border-left: 5px solid #4CAF50; /* green for low */
+}
+input::placeholder {
+    position: relative;
+    top: 1px;   /* 👈 MAGIC FIX */
+    color: #2d3748;
+}
+/* Text colors based on difficulty */
+.task-text.low {
+    color: #4CAF50; /* green */
+}
+
+.task-text.medium {
+    color: #ff9800; /* orange */
+}
+
+.task-text.high {
+    color: #ff4b4b; /* red */
+}
+.filters {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filters button {
+    padding: 6px 12px;
+    border-radius: 15px;
+    border: none;
+    background: rgb(161, 111, 215);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.filters button:hover {
+    background: #6c63ff;
+    color: white;
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Buttons (clean single rule) */
+.task-card button {
+  background: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Right side buttons layout */
+.task-card > div:last-child {
+  display: flex;
+  gap: 10px;
+}
+
+/* Completed task */
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.task-card.overdue {
+    border-left: 5px solid red;
+}
+
+.task-card.today {
+    border-left: 5px solid orange;
+}
+
+.task-card.upcoming {
+    border-left: 5px solid green;
+}
+.overdue {
+    color: red !important;
+    font-weight: bold;
+}

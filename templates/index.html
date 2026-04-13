@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Study Planner</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Comfortaa&display=swap" rel="stylesheet">
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+
+
+<body>
+    <div class="container">
+        <h1>📚 Study Planner</h1>
+
+        <form action="/add" method="POST" class="task-form">
+            <div class="input-group">
+                <input type="text" name="task" required>
+                <label>Enter your task...</label>
+            </div>
+
+    <!-- Priority dropdown -->
+            <select name="priority" class="priority-select">
+                <option value="high" selected>High 🔴</option>
+                <option value="medium">Medium 🟡</option>
+                <option value="low">Low 🟢</option>
+            </select>
+            <input type="date" name="due_date" class="priority-select">
+
+            <button type="submit">Add Task</button>
+        </form>
+        <div class="message">
+            <p>{{ emoji }} {{ message }}</p>
+        </div>
+
+        <!-- ✅ PROGRESS BAR HERE -->
+        <div class="progress-container">
+        <div class="progress-bar" style="width: {{ progress }}%;">
+            {{ progress }}%
+        </div>
+        </div>
+
+<div class="stats">
+    <p>
+        Total: {{ total_tasks }} |
+        Completed: {{ completed_tasks }}
+    </p>
+</div>
+
+<!-- 🔥 ADD HERE -->
+<div class="filters">
+    <button onclick="filterTasks('all')">All</button>
+    <button onclick="filterTasks('low')">Easy</button>
+    <button onclick="filterTasks('medium')">Medium</button>
+    <button onclick="filterTasks('high')">Hard</button>
+</div>
+<div style="margin-top:15px;">
+    <a href="/ai_suggest">
+        <button>🤖 Get AI Suggestions</button>
+    </a>
+</div>
+
+<ul class="task-list">
+    {% for task in tasks %}
+    <li class="task-card {{ task['priority'] }} {{ task['status'] }}">
+        <div class="task-left">
+            <input 
+                type="checkbox" 
+                class="task-check"
+                {% if task['completed'] %}checked{% endif %}
+                onclick="window.location.href='/toggle/{{ task['_id'] }}'"
+            >
+
+          <span class="task-text {{ task['priority'] }} {% if task['completed'] %}completed{% endif %}">
+    {{ task['text'] }} 
+
+{% if task['status'] == 'overdue' %}
+    🔴 Overdue
+{% elif task['status'] == 'today' %}
+    🟡 Today
+{% elif task['status'] == 'upcoming' %}
+    🟢 Upcoming
+{% endif %}
+    <br>
+    <small class="due-date">
+        📅 {{ task['due_date'] }}
+    </small>
+</span>
+        </div>
+
+        <div>
+    <a href="/edit/{{ task['_id'] }}">✏️</a>
+    <a href="/delete/{{ task['_id'] }}" class="delete-btn">❌</a>
+</div>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Task</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e6ddf5; /* soft lavender */
+        }
+
+        .edit-box {
+            background: #f3effc;
+            padding: 35px 40px;
+            border-radius: 20px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #5b4bb7;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: #ffffff;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border: 2px solid #a18cd1;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #a18cd1, #7b6ee6);
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.04);
+            box-shadow: 0 5px 15px rgba(129, 80, 207, 0.4);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #8056c9;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="edit-box">
+    <h2>Edit Task</h2>
+
+    <form method="POST">
+        <input type="text" name="task" value="{{ task['text'] }}" required>
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="/">⬅ Back</a>
+</div>
+
+</body>
+</html>
